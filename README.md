@@ -2,8 +2,9 @@
 A web scraping project for my Unix Tools course. This tool will scrape [petfinder.com](https://www.petfinder.com/) for dogs in and around Austin, TX. The goal of the project is to generate a dataset of features associated with adoptable dogs. Long-term plans are to potentially add the data to Kaggle for others to use ML and NLP to predict/classify dogs with high probability of adoption.
 
 ### Installing program dependencies
-`apt install chromium-chromedriver`
-`pip install selenium`
+  `apt install chromium-chromedriver`
+
+  `pip install selenium`
 
 # Introduction
 
