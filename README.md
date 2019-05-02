@@ -1,6 +1,10 @@
 # petfinder
 A web scraping project for my Unix Tools course. This tool will scrape [petfinder.com](https://www.petfinder.com/) for dogs in and around Austin, TX. The goal of the project is to generate a dataset of features associated with adoptable dogs. Long-term plans are to potentially add the data to Kaggle for others to use ML and NLP to predict/classify dogs with high probability of adoption.
 
+### Installing program dependencies
+`apt install chromium-chromedriver`
+`pip install selenium`
+
 # Introduction
 
 The Unix operating system was developed in the mid-1970s and has quickly become one of the most widely used operating systems today. Due to its popularity, many versions of Unix exist, including a freely distributed version known as Linux. One of the greatest features of the Unix system was the development of the pipe, which allows programs to send their outputs directly to the next process for further analysis. Because the Unix tools are designed to operate on large streams of text data at fast speeds, they play an important role in the analysis of "big data" in fields such as data science, bioinformatics, and computational linguistics.
@@ -11,7 +15,7 @@ In this paper, I present a data generation pipeline that scrapes the web for cha
 
 In accordance with the Unix philosophy of interoperability, the pipeline uses multiple Unix tools connected by pipes and the GNU Make tool to build the program from the *makefile*. The program is freely available for download and use, and can be found at the project's [Github repository](https://github.com/keenanberry/petfinder) page. The repository contains a *makefile* and a python script to scrape the JavaScript embedded web content found on [petfinder.com](https://www.petfinder.com/).
 
-In the \textit{makefile} the city, state, and date are defined as variables with the default settings configured to search for dogs in the Austin, TX area. However, the user can change the city name and state abbreviation if he/she desires to search the Petfinder database for dogs in other parts of the country. To collect the data, the user simply types `make` and the program begins by running *printSource.py*. This python script uses the Selenium library and ChromeDriver to download full web pages. Although the Unix `wget` command is typically used to download source code, this tool is not supported for use with embedded JavaScript. Thus, *printSource.py* is used to collect all pages associated with the search area (i.e. Austin, Tx). 
+In the *makefile* the city, state, and date are defined as variables with the default settings configured to search for dogs in the Austin, TX area. However, the user can change the city name and state abbreviation if he/she desires to search the Petfinder database for dogs in other parts of the country. To collect the data, the user simply types `make` and the program begins by running *printSource.py*. This python script uses the Selenium library and ChromeDriver to download full web pages. Although the Unix `wget` command is typically used to download source code, this tool is not supported for use with embedded JavaScript. Thus, *printSource.py* is used to collect all pages associated with the search area (i.e. Austin, Tx). 
 
 Next, a series of Unix tools `find | xargs | egrep | sed` are combined to output a shell script that uses the `wget` command to retrieve the source code for each dog profile found on all pages. Once the dog profiles are collected, the program uses a similar series of tools and the AWK scripting language to search each profile and output a 24 column text file which includes information corresponding to the following feature types: "primary_breed," "sex," "age," "primary_photo_url," "good_with_cats," "description," etc.
 
